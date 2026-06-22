@@ -1,19 +1,45 @@
+import { Card } from "@/components/ui/card"
+import ExperienceAndData from "./_components/experience-and-data"
+import HeroSection from "./_components/hero-section"
+import NavBar from "./_components/nav-bar"
+import ProjectBox from "./_components/project-pox"
 import { Button } from "@/components/ui/button"
 
 export default function Page() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
-      </div>
+    <div className="relative flex flex-col items-center justify-start gap-30">
+      <HeroSection />
+      <main className="flex w-full flex-col gap-4">
+        <ExperienceAndData />
+        <Card>
+          <div className="flex items-start justify-between">
+            <p className="text-[22px]">Works & Projects</p>
+            <p className="text-sm text-white/40">
+              Check out some of my design projects, meticulously crafted with
+              love and dedication .
+            </p>
+          </div>
+          <div className="grid w-full grid-cols-3 gap-4">
+            <ProjectBox />
+            <ProjectBox />
+            <ProjectBox />
+            <ProjectBox />
+            <ProjectBox />
+          </div>
+          <div className="flex items-center justify-between">
+            <p className="text-sm text-white/40">
+              Interested in Exploring More?
+            </p>
+            <Button
+              variant={"outline"}
+              className="rounded-full px-4 py-4 text-sm"
+              size={"sm"}
+            >
+              View All
+            </Button>
+          </div>
+        </Card>
+      </main>
     </div>
   )
 }
