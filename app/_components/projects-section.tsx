@@ -2,11 +2,21 @@ import React from "react"
 import ProjectBox from "./project-pox"
 import { Card } from "@/components/ui/card"
 
-function ProjectsSection({ children }: { children: React.ReactNode }) {
+function ProjectsSection({ children }: { children?: React.ReactNode }) {
   return (
     <>
       <Card className="hidden w-full xl:flex">
-        {children}
+        {children ? (
+          children
+        ) : (
+          <div className="flex flex-col items-start justify-between gap-2 xl:flex-row">
+            <p className="text-[22px]">Works & Projects</p>
+            <p className="text-sm text-white/40">
+              Check out some of my design projects, meticulously crafted with
+              love and dedication .
+            </p>
+          </div>
+        )}
         <div className="grid w-full grid-cols-3 gap-4">
           <ProjectBox />
           <ProjectBox />
@@ -42,7 +52,17 @@ function ProjectsSection({ children }: { children: React.ReactNode }) {
           </div> */}
       </Card>{" "}
       <div className="flex w-full flex-col gap-4 xl:!hidden">
-        {children}
+        {children ? (
+          children
+        ) : (
+          <div className="flex flex-col items-start justify-between gap-2 xl:flex-row">
+            <p className="text-[22px]">Works & Projects</p>
+            <p className="text-sm text-white/40">
+              Check out some of my design projects, meticulously crafted with
+              love and dedication .
+            </p>
+          </div>
+        )}
         <div className="grid w-full grid-cols-1 gap-4">
           <ProjectBox />
           <ProjectBox />

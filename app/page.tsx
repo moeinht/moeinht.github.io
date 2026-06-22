@@ -10,15 +10,7 @@ export default function Page() {
       <HeroSection />
       <main className="flex w-full flex-col gap-10 xl:gap-4">
         <ExperienceAndData />
-        <ProjectsSection>
-          <div className="flex flex-col items-start justify-between gap-2 xl:flex-row">
-            <p className="text-[22px]">Works & Projects</p>
-            <p className="text-sm text-white/40">
-              Check out some of my design projects, meticulously crafted with
-              love and dedication .
-            </p>
-          </div>
-        </ProjectsSection>
+        <ProjectsSection></ProjectsSection>
       </main>
     </div>
   )

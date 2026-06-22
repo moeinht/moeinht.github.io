@@ -16,27 +16,29 @@ function ExperienceAndData() {
             <p className="left-auto mb-1.25 text-[22px] leading-0">
               Experiences
             </p>
-            <Badge variant={"outline"}>+2.5 Years</Badge>
+            <Badge variant={"outline"}>+3 Years</Badge>
           </div>
-          <Button
-            variant={"link"}
-            className="h-fit w-fit gap-1 p-0 text-[12px] hover:no-underline"
-          >
-            <p>View All</p>
-            <svg
-              width="12"
-              height="12"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              viewBox="0 0 20 20"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="mb-1"
+          <Link href={"/resume"}>
+            <Button
+              variant={"link"}
+              className="h-fit w-fit gap-0 p-0 text-[12px] hover:no-underline"
             >
-              <path d="m9 18 6-6-6-6" />
-            </svg>
-          </Button>
+              <p>View Resume</p>
+              <svg
+                width="12"
+                height="12"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                viewBox="0 0 20 20"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="mb-1"
+              >
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </Button>
+          </Link>
         </div>
         <div className="relative flex h-full w-full items-start pl-4">
           <div className="absolute left-0 h-full min-h-full w-px rounded-full bg-gradient-to-b from-white/20 to-transparent"></div>
