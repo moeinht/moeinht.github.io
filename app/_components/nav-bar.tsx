@@ -10,46 +10,129 @@ function NavBar() {
   const path = usePathname()
 
   return (
-    <div className="sticky top-8 z-50 mb-30 flex h-max w-full items-center justify-center">
-      <Card className="!shadow-[inset_0px_0px_4px_rgba(0,0,0,0.1),0_1_4px_rgba(0,0,0,0.1)]! flex flex-row items-center justify-between gap-3 rounded-full bg-trans-card p-2 !pt-2 backdrop-blur-[25px]">
-        <div className="overflow-hidden rounded-full">
-          <Image
-            alt="Profile"
-            width={40}
-            height={40}
-            src={"/MoeinPicture.webp"}
-          />
+    <div className="sticky top-4 z-50 mb-15 flex h-max w-full items-center justify-center xl:top-8 xl:mb-30">
+      <Card className="!shadow-[inset_0px_0px_4px_rgba(0,0,0,0.1),0_1_4px_rgba(0,0,0,0.1)]! flex flex-row items-center justify-between gap-1 rounded-full bg-trans-card !p-2 !pt-2 backdrop-blur-[10px] xl:gap-2">
+        <div className="min-w-fit overflow-hidden rounded-full">
+          <Image alt="Profile" width={40} height={40} src={"/lsUU6.jpg"} />
         </div>
-        <nav className="flex items-center justify-between gap-3 text-base">
-          <Link
-            href={"#"}
-            className={"flex items-center justify-center gap-2.5"}
-          >
-            <Button data-active={path == "/"} variant={"ghost"}>
-              {/* <span></span> */}
-              <p>Home</p>
+        <nav className="flex items-center justify-between gap-0 text-base xl:gap-2">
+          <Link href={"/"}>
+            <Button
+              data-active={path == "/"}
+              variant={"ghost"}
+              className="h-fit gap-1 rounded-full px-[10px] xl:gap-3 xl:px-[14px]"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 18 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                stroke="#fff"
+              >
+                <path
+                  d="M6.49957 17.3333L6.2907 14.4093C6.17841 12.8372 7.42349 11.5 8.99956 11.5C10.5756 11.5 11.8207 12.8372 11.7084 14.4093L11.4996 17.3333"
+                  stroke=""
+                  strokeWidth="1.1"
+                />
+                <path
+                  d="M0.959635 10.0112C0.665452 8.09683 0.51836 7.13966 0.88028 6.29111C1.2422 5.44256 2.04516 4.86199 3.65109 3.70084L4.85097 2.83329C6.84872 1.38885 7.84759 0.666626 9.00014 0.666626C10.1527 0.666626 11.1516 1.38885 13.1493 2.83329L14.3492 3.70084C15.9551 4.86199 16.7581 5.44256 17.12 6.29111C17.4819 7.13966 17.3348 8.09683 17.0406 10.0112L16.7898 11.6436C16.3727 14.3574 16.1642 15.7143 15.191 16.5238C14.2177 17.3333 12.7949 17.3333 9.94915 17.3333H8.05113C5.20542 17.3333 3.78257 17.3333 2.80931 16.5238C1.83605 15.7143 1.62753 14.3574 1.2105 11.6436L0.959635 10.0112Z"
+                  stroke=""
+                  strokeWidth="1.1"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <p className="text-sm">Home</p>
             </Button>
           </Link>
-          <Link
-            href={"#"}
-            className={"flex items-center justify-center gap-2.5"}
-          >
-            <Button data-active={path == "/projects"} variant={"ghost"}>
-              {/* <span></span> */}
-              <p>Work & projects</p>
+          <Link href={"/portfolio"}>
+            <Button
+              data-active={path == "/portfolio"}
+              variant={"ghost"}
+              className="h-fit gap-1 rounded-full px-[10px] xl:gap-3 xl:px-[14px]"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                viewBox="0 0 20 20"
+                fill="none"
+                stroke="#fff"
+              >
+                <path
+                  d="M9.3623 1.97831C9.05602 2.10517 8.78144 2.37975 8.23234 2.92885C7.68336 3.47783 7.40867 3.75252 7.28182 4.05877C7.11266 4.46715 7.11266 4.92605 7.28182 5.33443C7.40869 5.64071 7.68325 5.91527 8.23236 6.46439C8.78117 7.01319 9.05608 7.28811 9.36228 7.41494C9.77066 7.58409 10.2296 7.58409 10.6379 7.41494C10.9442 7.28807 11.2188 7.01351 11.7679 6.46439C12.317 5.91527 12.5908 5.64071 12.7176 5.33443C12.8868 4.92605 12.8868 4.46715 12.7176 4.05877C12.5908 3.75248 12.317 3.47797 11.7679 2.92885C11.2188 2.37974 10.9442 2.10517 10.6379 1.97831C10.2296 1.80915 9.77068 1.80915 9.3623 1.97831Z"
+                  strokeWidth="1.1"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M4.05875 7.28145C3.75247 7.40832 3.4779 7.68288 2.92879 8.23199C2.37983 8.78096 2.10512 9.05567 1.97827 9.36191C1.80911 9.77029 1.80911 10.2292 1.97827 10.6376C2.10514 10.9439 2.3797 11.2184 2.92881 11.7675C3.47762 12.3163 3.75253 12.5912 4.05873 12.7181C4.46711 12.8872 4.92601 12.8872 5.33439 12.7181C5.64067 12.5912 5.91523 12.3167 6.46435 11.7675C7.01347 11.2184 7.28722 10.9439 7.41409 10.6376C7.58324 10.2292 7.58324 9.77029 7.41409 9.36191C7.28722 9.05562 7.01347 8.78111 6.46435 8.23199C5.91523 7.68288 5.64067 7.40832 5.33439 7.28145C4.92601 7.11229 4.46713 7.11229 4.05875 7.28145Z"
+                  strokeWidth="1.1"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M13.5359 8.23199C12.9869 8.78097 12.7122 9.05566 12.5854 9.36191C12.4162 9.77029 12.4162 10.2292 12.5854 10.6376C12.7122 10.9439 12.9868 11.2184 13.5359 11.7675C14.0847 12.3163 14.3596 12.5912 14.6658 12.7181C15.0742 12.8872 15.5331 12.8872 15.9415 12.7181C16.2478 12.5912 16.5223 12.3167 17.0714 11.7675C17.6206 11.2184 17.8943 10.9439 18.0212 10.6376C18.1903 10.2292 18.1903 9.77029 18.0212 9.36191C17.8943 9.05562 17.6206 8.7811 17.0714 8.23199C16.5223 7.68288 16.2478 7.40832 15.9415 7.28145C15.5331 7.11229 15.0742 7.11229 14.6658 7.28145C14.3596 7.40831 14.085 7.68288 13.5359 8.23199Z"
+                  strokeWidth="1.1"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M9.3623 12.585C9.05602 12.7119 8.78145 12.9864 8.23234 13.5355C7.68337 14.0845 7.40867 14.3592 7.28182 14.6655C7.11266 15.0738 7.11266 15.5327 7.28182 15.9411C7.40868 16.2474 7.68325 16.522 8.23236 17.0711C8.78116 17.6199 9.05608 17.8948 9.36228 18.0216C9.77066 18.1908 10.2296 18.1908 10.6379 18.0216C10.9442 17.8948 11.2188 17.6202 11.7679 17.0711C12.317 16.522 12.5908 16.2474 12.7176 15.9411C12.8868 15.5327 12.8868 15.0738 12.7176 14.6655C12.5908 14.3592 12.317 14.0847 11.7679 13.5355C11.2188 12.9864 10.9442 12.7119 10.6379 12.585C10.2296 12.4158 9.77068 12.4158 9.3623 12.585Z"
+                  strokeWidth="1.1"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <p className="text-sm">Work & projects</p>
             </Button>
           </Link>
-          <Link
-            href={"#"}
-            className={"flex items-center justify-center gap-2.5"}
-          >
-            <Button data-active={path == "/resume"} variant={"ghost"}>
-              {/* <span></span> */}
-              <p>Resume</p>
+          <Link href={"/resume"}>
+            <Button
+              data-active={path == "/resume"}
+              variant={"ghost"}
+              className="h-fit gap-1 rounded-full px-[10px] xl:gap-3 xl:px-[14px]"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 18 18"
+                fill="none"
+                stroke="#fff"
+              >
+                <path
+                  d="M7.49999 14.1667H12.5M7.49999 11.6667H12.5M10.8336 2.50073C10.754 2.5 10.6645 2.5 10.5623 2.5H6.83349C5.90007 2.5 5.43301 2.5 5.07649 2.68166C4.76288 2.84145 4.5081 3.09623 4.34831 3.40983C4.16666 3.76635 4.16666 4.23341 4.16666 5.16683V14.8335C4.16666 15.7669 4.16666 16.2334 4.34831 16.5899C4.5081 16.9035 4.76288 17.1587 5.07649 17.3185C5.43266 17.5 5.89916 17.5 6.83077 17.5L13.1692 17.5C14.1008 17.5 14.5666 17.5 14.9228 17.3185C15.2364 17.1587 15.4921 16.9035 15.6518 16.5899C15.8333 16.2337 15.8333 15.7679 15.8333 14.8363V7.7714C15.8333 7.66918 15.8332 7.57961 15.8325 7.5M10.8336 2.50073C11.0715 2.5029 11.2214 2.51172 11.3651 2.54623C11.5352 2.58705 11.6982 2.65439 11.8473 2.74577C12.0155 2.84881 12.1598 2.99318 12.4479 3.28125L15.0525 5.88582C15.3407 6.17407 15.484 6.3178 15.5871 6.486C15.6785 6.63512 15.7461 6.79771 15.7869 6.96777C15.8214 7.11149 15.8303 7.26212 15.8325 7.5M10.8336 2.50073L10.8333 4.83351C10.8333 5.76693 10.8333 6.23346 11.015 6.58998C11.1748 6.90358 11.4296 7.15873 11.7432 7.31852C12.0993 7.5 12.5658 7.5 13.4974 7.5H15.8325"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <p className="text-sm">Resume</p>
             </Button>
           </Link>
         </nav>
-        <Button className="rounded-full">Call Me</Button>
+        <Link
+          href={"tel:+989907771058"}
+          className="hidden xl:flex"
+          target="__blank"
+        >
+          <Button className="rounded-full">
+            <svg
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              viewBox="0 0 22 22"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M15.6 14.522c-2.395 2.52-8.504-3.534-6.1-6.064 1.468-1.545-.19-3.31-1.108-4.609-1.723-2.435-5.504.927-5.39 3.066.363 6.746 7.66 14.74 14.726 14.042 2.21-.218 4.75-4.21 2.215-5.669-1.268-.73-3.009-2.17-4.343-.767M14 3a7 7 0 0 1 7 7m-7-3a3 3 0 0 1 3 3" />
+            </svg>
+            <p>Call Me</p>
+          </Button>
+        </Link>
       </Card>
     </div>
   )

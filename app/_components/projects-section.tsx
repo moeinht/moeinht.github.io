@@ -1,0 +1,84 @@
+import React from "react"
+import ProjectBox from "./project-pox"
+import { Card } from "@/components/ui/card"
+
+function ProjectsSection({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <Card className="hidden w-full xl:flex">
+        {children}
+        <div className="grid w-full grid-cols-3 gap-4">
+          <ProjectBox />
+          <ProjectBox />
+          <ProjectBox />
+          <ProjectBox />
+          <ProjectBox />
+          <ProjectBox />
+        </div>
+        {/* <div className="flex items-center justify-between">
+            <p className="text-sm text-white/40">
+              Interested in Exploring More?
+            </p>
+            <Button
+              variant={"outline"}
+              className="rounded-full px-4 py-4 text-sm"
+              size={"sm"}
+            >
+              <p>View All</p>
+              <svg
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                viewBox="0 0 18 18"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="mb-1"
+              >
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </Button>
+          </div> */}
+      </Card>{" "}
+      <div className="flex w-full flex-col gap-4 xl:!hidden">
+        {children}
+        <div className="grid w-full grid-cols-1 gap-4">
+          <ProjectBox />
+          <ProjectBox />
+          <ProjectBox />
+          <ProjectBox />
+          <ProjectBox />
+          <ProjectBox />
+        </div>
+        {/* <div className="flex items-center justify-between">
+            <p className="text-sm text-white/40">
+              Interested in Exploring More?
+            </p>
+            <Button
+              variant={"outline"}
+              className="rounded-full px-4 py-4 text-sm"
+              size={"sm"}
+            >
+              <p>View All</p>
+              <svg
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                viewBox="0 0 18 18"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="mb-1"
+              >
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </Button>
+          </div> */}
+      </div>
+    </>
+  )
+}
+
+export default ProjectsSection
