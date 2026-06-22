@@ -250,12 +250,11 @@ function ResumePage() {
             </div>
           </Card>
         </div>
-        //comment
         <Card className="flex flex-col items-center gap-4 xl:flex-row xl:justify-between">
           <div className="w-fit rounded-xl bg-primary/5 px-4 py-3.5 text-center text-base text-primary">
             If my resume caught your interest, feel free to download it.
           </div>
-          <Link href={""}>
+          <Link className="w-full xl:w-fit" href={""}>
             <Button
               className="w-full rounded-full !bg-[#111] text-base xl:w-fit"
               variant={"outline"}
