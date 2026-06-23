@@ -3,6 +3,11 @@ import ExperienceAndData from "./_components/exprience/experience-and-data"
 import HeroSection from "./_components/hero-section"
 import ProjectBox from "./_components/project-pox"
 import ProjectsSection from "./_components/projects-section"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Portfolio | Moein Hoseini",
+}
 
 export default function Page() {
   return (

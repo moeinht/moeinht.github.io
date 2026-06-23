@@ -4,7 +4,10 @@ import { Card } from "@/components/ui/card"
 import Image from "next/image"
 import Link from "next/link"
 import ProjectsSection from "../_components/projects-section"
-
+import { Metadata } from "next"
+export const metadata: Metadata = {
+  title: "Resume | Moein Hoseini",
+}
 function ResumePage() {
   return (
     <div className="relative flex w-full flex-col items-center justify-start gap-4">

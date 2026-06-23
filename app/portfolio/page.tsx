@@ -2,7 +2,10 @@ import React from "react"
 import ProjectsSection from "../_components/projects-section"
 import ContactBox from "../_components/exprience/contact-box"
 import { Card } from "@/components/ui/card"
-
+import { Metadata } from "next"
+export const metadata: Metadata = {
+  title: "Works and Projects | Moein Hoseini",
+}
 function PortfolioPage() {
   return (
     <div className="relative flex w-full flex-col items-center justify-start gap-4">
