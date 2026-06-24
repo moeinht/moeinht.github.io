@@ -257,7 +257,13 @@ function ResumePage() {
           <div className="w-fit rounded-xl bg-primary/5 px-4 py-3.5 text-center text-base text-primary">
             If my resume caught your interest, feel free to download it.
           </div>
-          <Link className="w-full xl:w-fit" href={""}>
+          <Link
+            className="w-full xl:w-fit"
+            target="__blank"
+            href={
+              "https://drive.google.com/file/d/1uZyaB7iZhnl1Uu-ZMo9C2Cpu6uUPfdHy/view"
+            }
+          >
             <Button
               className="w-full rounded-full !bg-[#111] text-base xl:w-fit"
               variant={"outline"}
