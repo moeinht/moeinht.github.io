@@ -57,7 +57,10 @@ function ProjectsSection({ children }: { children?: React.ReactNode }) {
         )}
         <div className="grid w-full grid-cols-3 gap-4">
           {projects.map((item) => (
-            <ProjectBox key={item.href} project={item} />
+            <ProjectBox
+              key={item.href ? item.href : Math.random()}
+              project={item}
+            />
           ))}
         </div>
         {/* <div className="flex items-center justify-between">
@@ -100,7 +103,10 @@ function ProjectsSection({ children }: { children?: React.ReactNode }) {
         )}
         <div className="grid w-full grid-cols-1 gap-4">
           {projects.map((item) => (
-            <ProjectBox key={item.href} project={item} />
+            <ProjectBox
+              key={item.href ? item.href : Math.random()}
+              project={item}
+            />
           ))}
         </div>
         {/* <div className="flex items-center justify-between">

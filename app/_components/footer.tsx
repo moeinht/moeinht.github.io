@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import Image from "next/image"
 import Link from "next/link"
 import React from "react"
 
@@ -7,7 +8,14 @@ function Footer() {
   return (
     <div className="flex min-h-max flex-col gap-8">
       <Card className="mt-4 flex h-full w-full flex-col bg-transparent xl:flex-row xl:bg-card">
-        <div className="h-[210px] w-full rounded-xl bg-accent"></div>
+        <div className="flex h-[210px] items-center justify-center overflow-hidden rounded-xl bg-accent">
+          <Image
+            src={"/cofe.webp"}
+            width={300}
+            height={300}
+            alt="coffe"
+          ></Image>
+        </div>
         <div className="flex w-full flex-col justify-between gap-3">
           <p className="text-[22px] font-bold xl:text-[34px]">
             Ready to kickstart your project with a touch of magic?

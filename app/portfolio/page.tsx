@@ -3,6 +3,7 @@ import ProjectsSection from "../_components/projects-section"
 import ContactBox from "../_components/exprience/contact-box"
 import { Card } from "@/components/ui/card"
 import { Metadata } from "next"
+import Image from "next/image"
 export const metadata: Metadata = {
   title: "Works and Projects | Moein Hoseini",
 }
