@@ -1,8 +1,46 @@
 import React from "react"
-import ProjectBox from "./project-pox"
+import ProjectBox, { ProjectType } from "./project-pox"
 import { Card } from "@/components/ui/card"
 
 function ProjectsSection({ children }: { children?: React.ReactNode }) {
+  const projects: ProjectType[] = [
+    {
+      name: "kish staffs",
+      src: "/kish.webp",
+      role: "Frontend Developer",
+    },
+    {
+      name: "kish warehouse keeper",
+      src: "/kepp.webp",
+      role: "Frontend Developer",
+    },
+    {
+      name: "kish employs",
+      src: "/emp.webp",
+      role: "Frontend Developer",
+    },
+    {
+      name: "club",
+      src: "/club.webp",
+      href: "/club",
+      role: "Frontend Developer",
+    },
+    {
+      name: "balynor",
+      src: "/balynor.webp",
+      href: "/balynor",
+      role: "Frontend Developer",
+    },
+    { name: "tan", src: "/tan.webp", href: "/tan", role: "Frontend Developer" },
+    { name: "far", src: "/far.webp", href: "/far", role: "Frontend Developer" },
+    {
+      name: "form",
+      src: "/form.webp",
+      href: "/form",
+      role: "ui/ux implementation",
+    },
+  ]
+
   return (
     <>
       <Card className="hidden w-full xl:flex">
@@ -18,12 +56,9 @@ function ProjectsSection({ children }: { children?: React.ReactNode }) {
           </div>
         )}
         <div className="grid w-full grid-cols-3 gap-4">
-          <ProjectBox />
-          <ProjectBox />
-          <ProjectBox />
-          <ProjectBox />
-          <ProjectBox />
-          <ProjectBox />
+          {projects.map((item) => (
+            <ProjectBox key={item.href} project={item} />
+          ))}
         </div>
         {/* <div className="flex items-center justify-between">
             <p className="text-sm text-white/40">
@@ -64,12 +99,9 @@ function ProjectsSection({ children }: { children?: React.ReactNode }) {
           </div>
         )}
         <div className="grid w-full grid-cols-1 gap-4">
-          <ProjectBox />
-          <ProjectBox />
-          <ProjectBox />
-          <ProjectBox />
-          <ProjectBox />
-          <ProjectBox />
+          {projects.map((item) => (
+            <ProjectBox key={item.href} project={item} />
+          ))}
         </div>
         {/* <div className="flex items-center justify-between">
             <p className="text-sm text-white/40">
