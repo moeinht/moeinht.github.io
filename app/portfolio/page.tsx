@@ -17,13 +17,13 @@ function PortfolioPage() {
           </p>
         </div>
       </ProjectsSection>
-      <div className="grid h-full w-full grid-cols-1 gap-4 xl:grid-cols-3">
+      {/* <div className="grid h-full w-full grid-cols-1 gap-4 xl:grid-cols-3">
         <ContactBox />
         <Card className="gap-4 xl:col-start-2 xl:col-end-4">
           <p className="left-auto mb-1.25 text-[22px]">My Favorite Shots</p>
           <div className="h-[300px] w-full rounded-3xl bg-accent"></div>
         </Card>
-      </div>
+      </div> */}
     </div>
   )
 }
