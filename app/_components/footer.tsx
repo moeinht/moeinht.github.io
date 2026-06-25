@@ -8,12 +8,13 @@ function Footer() {
   return (
     <div className="flex min-h-max flex-col gap-8">
       <Card className="mt-4 flex h-full w-full flex-col bg-transparent xl:flex-row xl:bg-card">
-        <div className="flex h-[210px] items-center justify-center overflow-hidden rounded-xl bg-accent">
+        <div className="flex h-[210px] items-center justify-center overflow-hidden rounded-xl bg-accent xl:max-w-[25%]">
           <Image
             src={"/cofe.webp"}
-            width={300}
-            height={300}
+            width={200}
+            height={150}
             alt="coffe"
+            className="w-full object-cover"
           ></Image>
         </div>
         <div className="flex w-full flex-col justify-between gap-3">
