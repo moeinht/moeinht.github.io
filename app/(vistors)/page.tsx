@@ -4,8 +4,8 @@ import Earth from "@/model/earth"
 
 export default function Home() {
   return (
-    <div className="flex min-h-svh w-full items-center justify-around p-6 xl:p-8">
-      <div className="flex flex-col gap-2">
+    <div className="flex min-h-svh w-full flex-col items-center justify-around gap-6 xl:flex-row xl:p-8">
+      <div className="flex flex-col gap-2 p-4 pb-0 xl:p-0">
         <div className="flex flex-col gap-1">
           <Heading level={2} className="tex">
             Leave a memory!
@@ -17,7 +17,7 @@ export default function Home() {
           </Lead>
         </div>
       </div>
-      <div className="w-[550px]">
+      <div className="w-full xl:w-[550px]">
         <Earth />
       </div>
     </div>

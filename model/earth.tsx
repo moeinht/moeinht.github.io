@@ -103,7 +103,7 @@ export default function Earth() {
       ref={ref}
       style={{
         width: "100%",
-        height: "450px",
+        height: "400px",
       }}
     />
   )
