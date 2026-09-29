@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { createEarth } from "./earth-data"
+import { createEarth } from "./earth-model"
 
 export default function Earth() {
   const ref = useRef<HTMLDivElement | null>(null)
@@ -67,8 +67,6 @@ export default function Earth() {
     newYorkCard.style.boxShadow = "0 10px 30px rgba(0, 0, 0, 0.15)"
 
     createEarth(element, {
-      autoRotateSpeed: 0.35,
-
       markers: [
         {
           lat: 35.6762,

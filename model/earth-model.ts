@@ -1,6 +1,7 @@
 import * as THREE from "three"
 import { OrbitControls } from "three/addons/controls/OrbitControls.js"
-//https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_land.geojson
+
+// https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_land.geojson
 const LAND_URL = "/data/land-data.json"
 
 type Position = [lng: number, lat: number]
@@ -161,6 +162,44 @@ function latLngToVector3(
 }
 
 /* -------------------------------------------------------------------------- */
+/* Find nearest land dot                                                      */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Finds the closest existing land dot to the requested geographic position.
+ *
+ * Important:
+ * This runs only once when markers are created.
+ * It does NOT run inside the animation loop.
+ *
+ * Therefore keeping dotSpacing at 1.4 remains cheap.
+ */
+function findNearestLandPoint(
+  markerPosition: THREE.Vector3,
+  landPoints: THREE.Vector3[]
+): THREE.Vector3 | null {
+  if (landPoints.length === 0) {
+    return null
+  }
+
+  let nearest: THREE.Vector3 | null = null
+  let nearestDistanceSquared = Infinity
+
+  for (let i = 0; i < landPoints.length; i++) {
+    const point = landPoints[i]
+
+    const distanceSquared = markerPosition.distanceToSquared(point)
+
+    if (distanceSquared < nearestDistanceSquared) {
+      nearestDistanceSquared = distanceSquared
+      nearest = point
+    }
+  }
+
+  return nearest
+}
+
+/* -------------------------------------------------------------------------- */
 /* Earth dots                                                                  */
 /* -------------------------------------------------------------------------- */
 
@@ -274,23 +313,62 @@ function createAtmosphere(radius: number): THREE.Mesh {
 /* Markers                                                                     */
 /* -------------------------------------------------------------------------- */
 
-function createMarkerMesh(marker: EarthMarker, radius: number): THREE.Mesh {
-  const geometry = new THREE.SphereGeometry(0.019, 6, 6)
+/**
+ * Creates a marker.
+ *
+ * `landPoints` is optional because the marker can still work without
+ * land snapping.
+ */
+function createMarkerMesh(
+  marker: EarthMarker,
+  radius: number,
+  landPoints: THREE.Vector3[],
+  shouldSnapToLand: boolean
+): THREE.Mesh {
+  const geometry = new THREE.SphereGeometry(0.015, 8, 8)
 
   const material = new THREE.MeshBasicMaterial({
-    color: "#ef4444",
+    color: "#8285F4",
   })
 
   const mesh = new THREE.Mesh(geometry, material)
 
-  const position = latLngToVector3(marker.lat, marker.lng, radius + 0.04)
+  /*
+   * First calculate the exact geographic position.
+   */
+  const geographicPosition = latLngToVector3(
+    marker.lat,
+    marker.lng,
+    radius + 0.012
+  )
 
-  mesh.position.copy(position)
+  let finalPosition = geographicPosition
+
+  /*
+   * If the marker coordinates are on land, snap it to the nearest
+   * land dot that already exists.
+   *
+   * This does NOT create additional dots.
+   */
+  if (shouldSnapToLand && landPoints.length > 0) {
+    const nearestLandPoint = findNearestLandPoint(
+      geographicPosition,
+      landPoints
+    )
+
+    if (nearestLandPoint) {
+      finalPosition = nearestLandPoint
+    }
+  }
+
+  mesh.position.copy(finalPosition)
 
   mesh.userData.marker = marker
 
   return mesh
-} /* -------------------------------------------------------------------------- */
+}
+
+/* -------------------------------------------------------------------------- */
 /* Marker overlay                                                              */
 /* -------------------------------------------------------------------------- */
 
@@ -391,7 +469,7 @@ export async function createEarth(
     dotColor = "#cbd5e1",
     oceanDotColor = "#f1f5f9",
     background = null,
-    autoRotateSpeed = 0.35,
+    autoRotateSpeed = 0.09,
     markers = [],
   } = options
 
@@ -412,7 +490,6 @@ export async function createEarth(
   /* ------------------------------------------------------------------------ */
 
   const width = container.clientWidth || 1
-
   const height = container.clientHeight || 1
 
   const camera = new THREE.PerspectiveCamera(35, width / height, 0.1, 100)
@@ -464,8 +541,10 @@ export async function createEarth(
   const earth = new THREE.Group()
 
   scene.add(earth)
+
   earth.rotation.x = 0.22
-  earth.rotation.y = THREE.MathUtils.degToRad(120)
+  earth.rotation.y = THREE.MathUtils.degToRad(150)
+
   /* ------------------------------------------------------------------------ */
   /* Ocean                                                                     */
   /* ------------------------------------------------------------------------ */
@@ -532,7 +611,15 @@ export async function createEarth(
   const ownedElements = new Set<HTMLElement>()
 
   for (const marker of markers) {
-    const mesh = createMarkerMesh(marker, radius)
+    /*
+     * Only snap markers that are actually located on land.
+     *
+     * This prevents a marker in the ocean from jumping to
+     * the nearest continent.
+     */
+    const markerIsLand = isLand(marker.lng, marker.lat, geojson)
+
+    const mesh = createMarkerMesh(marker, radius, points.land, markerIsLand)
 
     markerGroup.add(mesh)
 
@@ -652,15 +739,11 @@ export async function createEarth(
     /*
      * Check if the globe itself is between
      * the camera and the marker.
-     *
-     * This prevents hovering markers on
-     * the back side of the Earth.
      */
     const oceanHits = raycaster.intersectObject(ocean, false)
 
     if (oceanHits.length > 0) {
       const oceanDistance = oceanHits[0].distance
-
       const markerDistance = markerHit.distance
 
       if (oceanDistance < markerDistance - 0.001) {
@@ -714,11 +797,11 @@ export async function createEarth(
     const y = rect.top + (1 - projected.y) * 0.5 * rect.height
 
     element.style.left = `${x}px`
-
     element.style.top = `${y}px`
-
     element.style.display = "block"
-  } /* ------------------------------------------------------------------------ */
+  }
+
+  /* ------------------------------------------------------------------------ */
   /* Pointer events                                                            */
   /* ------------------------------------------------------------------------ */
 
@@ -732,7 +815,6 @@ export async function createEarth(
 
   const handlePointerMove = (event: PointerEvent): void => {
     updateMousePosition(event)
-
     updateMarkerHover()
   }
 
@@ -754,13 +836,11 @@ export async function createEarth(
 
   controls.addEventListener("start", () => {
     isDragging = true
-
     clearMarkerHover()
   })
 
   controls.addEventListener("end", () => {
     isDragging = false
-
     updateMarkerHover()
   })
 
@@ -809,9 +889,8 @@ export async function createEarth(
     controls.update()
 
     /*
-     * Update hover every frame so that
-     * marker position stays synchronized
-     * while the Earth moves.
+     * Hover detection remains synchronized
+     * with the rotating Earth.
      */
     if (!isDragging && markerMeshes.length > 0) {
       updateMarkerHover()
